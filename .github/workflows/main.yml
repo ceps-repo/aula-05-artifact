@@ -13,7 +13,8 @@ on:
 
 env:
   FILE_NAME: hello-server
-  DOWNLOAD_PATH: /home/runner/work/aula-05-artifact/aula-05-artifact
+  DOWNLOAD_PATH_L: /home/runner/work/aula-05-artifact/aula-05-artifact
+  DOWNLOAD_PATH_W: D:\a\aula-05-artifact\aula-05-artifact
 
 jobs:
 
@@ -56,7 +57,7 @@ jobs:
       with:
         pattern: linux
     
-    - run: ls ${{ env.DOWNLOAD_PATH }}/linux
+    - run: ls ${{ env.DOWNLOAD_PATH_L }}/linux
     
     - name: opcoes run
       run: source ./run.sh
@@ -75,4 +76,4 @@ jobs:
       with:
         pattern: windows
         
-    - run: ls ${{ env.DOWNLOAD_PATH }}/windows
+    - run: ls ${{ env.DOWNLOAD_PATH_W }}/windows
