@@ -6,8 +6,10 @@ name: artifact
 on:
   push:
     branches: [ "main" ]
-  #pull_request:
-    #branches: [ "main" ]
+  workflow_dispatch:
+  schedule:
+    - cron: '15 * * * 1-6'
+
 
 env:
   FILE_NAME: hello-server
@@ -38,3 +40,46 @@ jobs:
       with:
         name: windows
         path: ./${{ env.FILE_NAME }}.exe
+
+  Job1:
+    name: download-and-run-linux
+    needs: build-go
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: download
+      uses: actions/download-artifact@v4
+      with:
+        path: ./${{ env.FILE_NAME }}
+        #pattern: hello-world.*
+    
+    - run: ls -R
+    
+    - name: opcoes run
+      run: source ./run.sh
+ 
+    
+
+
+
+
+
+
+
+#    1º JOB
+
+#- Identificador: download-and-run-linux
+#- Name: Download and run Linux
+#- Runner: ubuntu (última versão)
+#- Primeiro Step: usar a action de checkout no repo
+#- Segundo Step: usar a action de download do artefato, passando como argumento o nome do artefato chamado linux, gerado durante o exercício
+#- Terceiro Step: executar no S.O o comando para ler as opções do script run.sh (comando: source ./run.sh)
+
+#2º JOB
+
+#- Identificador: download-only-windows
+#- Name: Download Windows
+#- Runner: windows (última versão)
+#- Primeiro Step: usar a action de checkout no repo
+#- Segundo Step: usar a action de download do artefato, passando como argumento o nome do artefato chamado windows, gerado durante o exercício
+    
