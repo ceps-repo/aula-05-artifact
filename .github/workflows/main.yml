@@ -47,11 +47,14 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
+    - name: Chekout repo for download
+      uses: actions/checkout@v2
+      
     - name: download
       uses: actions/download-artifact@v4
       with:
-        path: ./${{ env.FILE_NAME }}
-        #pattern: hello-world.*
+        path: ./
+        pattern: linux*
     
     - run: ls -R
     
