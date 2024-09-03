@@ -55,7 +55,7 @@ jobs:
       with:
         pattern: linux
     
-    - run: ls
+    - run: ls /home/runner/work/aula-05-artifact/aula-05-artifact/linux
     
     - name: opcoes run
       run: source ./run.sh
