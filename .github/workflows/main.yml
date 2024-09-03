@@ -53,10 +53,10 @@ jobs:
     - name: download
       uses: actions/download-artifact@v4
       with:
-        path: ./
-        pattern: linux*
+        path: ./linux
+        pattern: ${{ env.FILE_NAME }}
     
-    - run: ls -R
+    - run: ls
     
     - name: opcoes run
       run: source ./run.sh
