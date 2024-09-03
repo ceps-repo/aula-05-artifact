@@ -60,7 +60,7 @@ jobs:
     - run: ls ${{ env.DOWNLOAD_PATH_L }}
     
     - name: opcoes run
-      run: source ./run.sh ${{ env.DOWNLOAD_PATH_L }}${{ env.FILE_NAME }}
+      run: source ./run_remote.sh ${{ env.DOWNLOAD_PATH_L }}/${{ env.FILE_NAME }}
 
   Job2:
     name: download-windows
