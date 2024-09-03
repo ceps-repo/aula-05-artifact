@@ -13,6 +13,7 @@ on:
 
 env:
   FILE_NAME: hello-server
+  DOWNLOAD_PATH: /home/runner/work/aula-05-artifact/aula-05-artifact
 
 jobs:
 
@@ -50,38 +51,28 @@ jobs:
     - name: Chekout repo for download
       uses: actions/checkout@v4
       
-    - name: download
+    - name: download linux
       uses: actions/download-artifact@v4
       with:
         pattern: linux
     
-    - run: ls /home/runner/work/aula-05-artifact/aula-05-artifact/linux
+    - run: ls ${{ env.DOWNLOAD_PATH }}/linux
     
     - name: opcoes run
       run: source ./run.sh
 
+  Job2:
+    name: download-windows
+    needs: build-go
+    runs-on: windows-latest
     
-
-
-
-
-
-
-
-#    1º JOB
-
-#- Identificador: download-and-run-linux
-#- Name: Download and run Linux
-#- Runner: ubuntu (última versão)
-#- Primeiro Step: usar a action de checkout no repo
-#- Segundo Step: usar a action de download do artefato, passando como argumento o nome do artefato chamado linux, gerado durante o exercício
-#- Terceiro Step: executar no S.O o comando para ler as opções do script run.sh (comando: source ./run.sh)
-
-#2º JOB
-
-#- Identificador: download-only-windows
-#- Name: Download Windows
-#- Runner: windows (última versão)
-#- Primeiro Step: usar a action de checkout no repo
-#- Segundo Step: usar a action de download do artefato, passando como argumento o nome do artefato chamado windows, gerado durante o exercício
-    
+    steps:
+    - name: Chekout repo for download
+      uses: actions/checkout@v4
+      
+    - name: download windows
+      uses: actions/download-artifact@v4
+      with:
+        pattern: windows
+        
+    - run: ls ${{ env.DOWNLOAD_PATH }}/windows
